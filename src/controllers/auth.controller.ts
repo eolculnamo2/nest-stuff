@@ -8,12 +8,12 @@ export class AuthController {
   constructor(private readonly jwtService: JwtService) { }
 
   @Post()
-  public getJwt(@Body() userDto: UserDto) {
+  public getJwt(@Body() userDto: UserDto): string {
     return this.jwtService.generateJwt(userDto);
   }
 
   @Post("/decode")
-  public async readJwt(@Body() userLoginDto: UserLoginDto) {
+  public async readJwt(@Body() userLoginDto: UserLoginDto): Promise<UserDto> {
     return await this.jwtService.readJwt(userLoginDto.jwt);
   }
 }

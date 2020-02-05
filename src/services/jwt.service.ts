@@ -15,7 +15,7 @@ export class JwtService {
     }, this.wouldBeSecretVar, { expiresIn: '1h' });
   }
 
-  public async readJwt(token: string) {
+  public async readJwt(token: string): Promise<UserDto> {
     try {
     return await verify(token, this.wouldBeSecretVar);
     } catch (e) {
