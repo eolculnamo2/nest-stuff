@@ -1,7 +1,8 @@
 import { Controller, Body, Post, Get } from "@nestjs/common";
-import { JwtService } from "src/services/jwt.service";
-import { UserDto } from "src/dto/user.dto";
-import { UserLoginDto } from "src/dto/userLogin.dto";
+import { JwtService } from "../services/jwt.service";
+import { UserDto } from "..//dto/user.dto";
+import { UserLoginDto } from "../dto/userLogin.dto";
+import { JwtResponse } from "../dto/jwtResponse.dto";
 
 @Controller("jwt")
 export class AuthController {
@@ -13,7 +14,7 @@ export class AuthController {
   }
 
   @Post("/decode")
-  public async readJwt(@Body() userLoginDto: UserLoginDto): Promise<UserDto> {
+  public async readJwt(@Body() userLoginDto: UserLoginDto): Promise<JwtResponse> {
     return await this.jwtService.readJwt(userLoginDto.jwt);
   }
 }

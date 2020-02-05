@@ -1,6 +1,7 @@
 import { sign, verify } from 'jsonwebtoken';
 import { Injectable } from "@nestjs/common";
 import { UserDto } from "src/dto/user.dto";
+import { JwtResponse } from 'src/dto/jwtResponse.dto';
 
 @Injectable()
 export class JwtService {
@@ -15,7 +16,7 @@ export class JwtService {
     }, this.wouldBeSecretVar, { expiresIn: '1h' });
   }
 
-  public async readJwt(token: string): Promise<UserDto> {
+  public async readJwt(token: string): Promise<JwtResponse> {
     try {
     return await verify(token, this.wouldBeSecretVar);
     } catch (e) {
